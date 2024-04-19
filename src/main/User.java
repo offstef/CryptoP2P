@@ -1,22 +1,24 @@
 package main;
 
-import java.time.LocalDate;
-
-public class User extends Bank{
+public class User {
 	public String username;
 	protected String password;
-	private String country;
-	private LocalDate joined;
+	private String location;
 
 	// i'll use it for creating a user to transfer money to
 	public User() {
 		this.username = "";
 	}
+
 	// general user creation
-	public User(String username, String password, String country) {
+	public User(Bank bank, String username, String password) {
 		this.username = username;
 		this.password = password;
-		this.country = country;
+		this.location = bank.getLocation();
+	}
+
+	public User(String password) {
+		this.password = password;
 	}
 
 	public String getUsername() {
@@ -35,20 +37,12 @@ public class User extends Bank{
 		this.password = password;
 	}
 
-	public String getCountry() {
-		return country;
+	public String getLocation() {
+		return location;
 	}
 
-	public void setCountry(String country) {
-		this.country = country;
-	}
-
-	public LocalDate getJoined() {
-		return joined;
-	}
-
-	public void setJoined(LocalDate joined) {
-		this.joined = joined;
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 }
