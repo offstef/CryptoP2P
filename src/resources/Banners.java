@@ -3,19 +3,19 @@ package resources;
 public class Banners {
 	
 	public void title () {
-		System.out.println("  @@@@@@@ @@@@@@@  @@@ @@@ @@@@@@@  @@@@@@@  @@@@@@    @@@@@@@   @@@@@@  @@@@@@@ ");
-        System.out.println(" !@@      @@!  @@@ @@! !@@ @@!  @@@   @@!   @@!  @@@   @@!  @@@ @@   @@@ @@!  @@@");
-        System.out.println(" !@!      @!@!!@!   !@!@!  @!@@!@!    @!!   @!@  !@!   @!@@!@!    .!!@!  @!@@!@! ");
-        System.out.println(" :!!      !!: :!!    !!:   !!:        !!:   !!:  !!!   !!:       !!:     !!:     ");
-        System.out.println("  :: :: :  :   : :   .:     :          :     : :. :    :       :.:: :::  :      ");
-        System.out.println("                                                                                ");
+		System.err.println("  @@@@@@@ @@@@@@@  @@@ @@@ @@@@@@@  @@@@@@@  @@@@@@    @@@@@@@   @@@@@@  @@@@@@@ ");
+        System.err.println(" !@@      @@!  @@@ @@! !@@ @@!  @@@   @@!   @@!  @@@   @@!  @@@ @@   @@@ @@!  @@@");
+        System.err.println(" !@!      @!@!!@!   !@!@!  @!@@!@!    @!!   @!@  !@!   @!@@!@!    .!!@!  @!@@!@! ");
+        System.err.println(" :!!      !!: :!!    !!:   !!:        !!:   !!:  !!!   !!:       !!:     !!:     ");
+        System.err.println("  :: :: :  :   : :   .:     :          :     : :. :    :       :.:: :::  :      ");
+        System.err.println("                                                                                ");
 	}
 	
 	public void end() {
-		System.out.println(" _____ _____ ____    ");
-        System.out.println("|   __|   | |    \\   ");
-        System.out.println("|   __| | | |  |  |_ ");
-        System.out.println("|_____|_|___|____/|_|");
+		System.err.println(" _____ _____ ____    ");
+        System.err.println("|   __|   | |    \\   ");
+        System.err.println("|   __| | | |  |  |_ ");
+        System.err.println("|_____|_|___|____/|_|");
 	}
 	
 }
