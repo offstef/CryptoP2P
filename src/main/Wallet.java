@@ -1,30 +1,18 @@
 package main;
 
 public class Wallet {
-
-	private double quantity;
+	private User propietary;
+	private double wealth;
 	private String password;
-
-	public Wallet(User user, double quantity) {
-		this.quantity = quantity;
-		this.password = user.getPassword();
+	public Coin currency;
+	
+	public Wallet(User propietary, Coin currency) {
+		this.propietary = propietary;
+		this.wealth = 0.0;
+		this.password = propietary.getPassword();
+		this.currency = currency;
 	}
-
-	public double getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(double quantity) {
-		this.quantity = quantity;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
+	
 	
 
 }

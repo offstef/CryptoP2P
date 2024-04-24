@@ -1,23 +1,19 @@
 package main;
 
+import java.util.ArrayList;
+
 public class User {
 	public String username;
-	protected String password;
-	private String location;
-
-	// i'll use it for creating a user to transfer money to
+	private String password;
+	private ArrayList<Transactions> transactions;
+	
 	public User() {
-		this.username = "";
+		this.username = null;
+		this.password = null;
 	}
 
-	// general user creation
-	public User(Bank bank, String username, String password) {
+	public User(String username, String password) {
 		this.username = username;
-		this.password = password;
-		this.location = bank.getLocation();
-	}
-
-	public User(String password) {
 		this.password = password;
 	}
 
@@ -37,12 +33,10 @@ public class User {
 		this.password = password;
 	}
 
-	public String getLocation() {
-		return location;
+	@Override
+	public String toString() {
+		return username;
 	}
-
-	public void setLocation(String location) {
-		this.location = location;
-	}
-
+	
+	
 }
