@@ -1,11 +1,9 @@
 package main;
 
-import java.util.ArrayList;
-
 public class User {
 	public String username;
 	private String password;
-	private ArrayList<Transactions> transactions;
+	public Wallet[] userWallets;
 	
 	public User() {
 		this.username = null;
@@ -37,6 +35,7 @@ public class User {
 	public String toString() {
 		return username;
 	}
+
 	
 	
 }

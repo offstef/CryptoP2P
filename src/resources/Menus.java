@@ -64,6 +64,7 @@ public class Menus {
 			}
 		} while (option != 4);
 	}
+
 	public void transactionMenu() {
 		int option;
 		do {
@@ -76,10 +77,13 @@ public class Menus {
 			option = input.nextInt();
 			switch (option) {
 			case 1:
+				manager.seeTransactions();
 				break;
 			case 2:
+				menuTransactions();
 				break;
 			case 3:
+				manager.deleteTransaction();
 				break;
 			case 4:
 				break;
@@ -88,6 +92,7 @@ public class Menus {
 			}
 		} while (option != 4);
 	}
+
 	public void walletMenu() {
 		int option;
 		do {
@@ -99,8 +104,10 @@ public class Menus {
 			option = input.nextInt();
 			switch (option) {
 			case 1:
+				manager.walletUser();
 				break;
 			case 2:
+				manager.walletWealth();
 				break;
 			case 3:
 				break;
@@ -108,6 +115,30 @@ public class Menus {
 				break;
 			}
 		} while (option != 3);
+	}
+
+	public void menuTransactions() {
+		int option;
+		do {
+			System.out.println("What type of transaction do you want?");
+			System.out.println("1. Crypto transaction");
+			System.out.println("2. Currency transaction");
+			System.out.println("3. EXIT");
+			option = input.nextInt();
+			switch (option) {
+			case 1:
+				manager.cryptoTransaction();
+				break;
+			case 2:
+				manager.currencyTransaction();
+				break;
+			case 3:
+				break;
+			default:
+				break;
+			}
+		} while (option != 3);
+
 	}
 
 }
