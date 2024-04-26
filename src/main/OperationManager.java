@@ -12,13 +12,18 @@ public class OperationManager {
 
 	// user options
 	public void createUser() {
-		User user = new User();
-		System.out.print("What's your name: ");
-		user.setUsername(input.nextLine());
-		System.out.println("Set your password");
-		user.setPassword(input.nextLine());
-		allUsers.add(user);
-		createWallets(user);
+		try {
+			User user = new User();
+			System.out.print("What's your name: ");
+			user.setUsername(input.nextLine());
+			System.out.println("Set your password");
+			user.setPassword(input.nextLine());
+			allUsers.add(user);
+			createWallets(user);
+		} catch (Exception e) {
+			System.err.println("Error creating user: " + e.getMessage());
+			createUser();
+		}
 	}
 
 	public void createWallets(User user) {
@@ -254,7 +259,7 @@ public class OperationManager {
 					for (Wallet wallet : userWallets) {
 						System.out.println(wallet);
 					}
-				}else {
+				} else {
 					System.out.println("AUTH FAILED!");
 					walletUser();
 				}

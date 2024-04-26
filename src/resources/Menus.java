@@ -9,30 +9,35 @@ public class Menus {
 	OperationManager manager = new OperationManager();
 
 	public void initialMenu() {
-		int option;
+		int option = 0;
 		do {
-			System.out.println("CHOOSE AN OPTION");
-			System.out.println("1. USER");
-			System.out.println("2. TRANSACTION");
-			System.out.println("3. WALLET");
+			try {
+				System.out.println("CHOOSE AN OPTION");
+				System.out.println("1. USER");
+				System.out.println("2. TRANSACTION");
+				System.out.println("3. WALLET");
 
-			System.out.println();
-			System.out.println("4. EXIT");
-			option = input.nextInt();
-			switch (option) {
-			case 1:
-				userMenu();
-				break;
-			case 2:
-				transactionMenu();
-				break;
-			case 3:
-				walletMenu();
-				break;
-			case 4:
-				break;
-			default:
-				break;
+				System.out.println();
+				System.out.println("4. EXIT");
+				option = input.nextInt();
+				switch (option) {
+				case 1:
+					userMenu();
+					break;
+				case 2:
+					transactionMenu();
+					break;
+				case 3:
+					walletMenu();
+					break;
+				case 4:
+					break;
+				default:
+					throw new IllegalArgumentException("Not an option");
+				}
+			} catch (Exception e) {
+				System.err.println("WROOOONG!!!");
+				input.nextLine();
 			}
 		} while (option != 4);
 	}
@@ -60,7 +65,7 @@ public class Menus {
 			case 4:
 				break;
 			default:
-				break;
+				throw new IllegalArgumentException("Not an option");
 			}
 		} while (option != 4);
 	}
@@ -84,7 +89,7 @@ public class Menus {
 			case 3:
 				break;
 			default:
-				break;
+				throw new IllegalArgumentException("Not an option");
 			}
 		} while (option != 3);
 	}
@@ -104,7 +109,7 @@ public class Menus {
 			case 2:
 				break;
 			default:
-				break;
+				throw new IllegalArgumentException("Not an option");
 			}
 		} while (option != 2);
 	}
@@ -127,11 +132,10 @@ public class Menus {
 			case 3:
 				break;
 			default:
-				break;
+				throw new IllegalArgumentException("Not an option");
 			}
 		} while (option != 3);
 
 	}
-	
 
 }
