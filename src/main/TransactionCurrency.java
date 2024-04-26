@@ -2,7 +2,6 @@ package main;
 
 public class TransactionCurrency extends Transactions {
 
-	
 	public TransactionCurrency(Wallet remitentWallet, Wallet destinataryWallet, double amount) {
 		super(remitentWallet, destinataryWallet, amount);
 	}
@@ -25,7 +24,7 @@ public class TransactionCurrency extends Transactions {
 				System.out.println("remitent and destinatary wallets have different currencies");
 			}
 		} else {
-			System.out.println("remitent invalid currency");
+			System.out.println("invalid currency");
 		}
 
 		return transactionSuccess;
@@ -38,7 +37,7 @@ public class TransactionCurrency extends Transactions {
 
 	@Override
 	public String toString() {
-		return super.toString() + " of currency";
+		return super.toString() + " of some type of normal currency";
 	}
 
 }

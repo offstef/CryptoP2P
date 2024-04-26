@@ -3,13 +3,11 @@ package main;
 public class Wallet {
 	private User propietary;
 	private double wealth;
-	private String password;
 	public Coin currency;
 
 	public Wallet(User propietary, Coin coin) {
 		this.propietary = propietary;
 		this.wealth = 0.0;
-		this.password = propietary.getPassword();
 		this.currency = coin;
 	}
 
@@ -29,14 +27,6 @@ public class Wallet {
 		this.wealth = wealth;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	public Coin getCurrency() {
 		return currency;
 	}
@@ -47,7 +37,7 @@ public class Wallet {
 
 	@Override
 	public String toString() {
-		return propietary.getUsername() + "\n  " + wealth + currency;
+		return "" + wealth + " " + currency;
 	}
 
 }
