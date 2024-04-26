@@ -45,7 +45,7 @@ public class Menus {
 			System.out.println("	2. Create an user");
 			System.out.println("	3. Delete an user(requires auth)");
 			System.out.println();
-			System.out.println("	4.EXIT");
+			System.out.println("	4.GO BACK ");
 			option = input.nextInt();
 			switch (option) {
 			case 1:
@@ -73,7 +73,7 @@ public class Menus {
 			System.out.println("	2. Start a transaction");
 			System.out.println("	3. Delete a transaction(requires auth)");
 			System.out.println();
-			System.out.println("	4.EXIT");
+			System.out.println("	4.GO BACK");
 			option = input.nextInt();
 			switch (option) {
 			case 1:
@@ -100,7 +100,7 @@ public class Menus {
 			System.out.println("	1. See an user wallets(requires auth)");
 			System.out.println("	2. Check wealth of an user(requires auth)");
 			System.out.println();
-			System.out.println("	3.EXIT");
+			System.out.println("	3.GO BACK");
 			option = input.nextInt();
 			switch (option) {
 			case 1:
@@ -123,7 +123,7 @@ public class Menus {
 			System.out.println("What type of transaction do you want?");
 			System.out.println("1. Crypto transaction");
 			System.out.println("2. Currency transaction");
-			System.out.println("3. EXIT");
+			System.out.println("3. GO BACK");
 			option = input.nextInt();
 			switch (option) {
 			case 1:
@@ -140,5 +140,6 @@ public class Menus {
 		} while (option != 3);
 
 	}
+	
 
 }

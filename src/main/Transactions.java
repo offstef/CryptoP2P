@@ -4,7 +4,7 @@ public abstract class Transactions {
 	protected User remitent;
 	protected User destinatary;
 
-	public abstract void sendTo(User remitent, User destinatary, Wallet walletRemitent, Wallet walletDestinatary, double amount);
+	public abstract boolean sendTo(Wallet walletRemitent, Wallet walletDestinatary, double amount);
 
 	@Override
 	public String toString() {

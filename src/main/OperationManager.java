@@ -25,12 +25,17 @@ public class OperationManager {
 
 	public void createWallets(User user) {
 		Coin[] allCoins = Coin.values();
-		user.userWallets = new Wallet[allCoins.length];
+	    Wallet[] userWallets = new Wallet[allCoins.length];
 
-		for (int i = 0; i < allCoins.length; i++) {
-			user.userWallets[i] = new Wallet(user, allCoins[i]);
-			user.userWallets[i].setWealth(10.0);
-		}
+	    for (int i = 0; i < allCoins.length; i++) {
+	        userWallets[i] = new Wallet(user, allCoins[i]);
+	        userWallets[i].setWealth(10);
+	    }
+	    user.setUserWallets(userWallets);
+		System.out.println("User's Wallets:");
+	    for (Wallet wallet : user.getUserWallets()) {
+	        System.out.println(wallet.getCurrency());
+	    }
 	}
 
 	public void seeUsers() {
@@ -139,24 +144,82 @@ public class OperationManager {
 		}
 		return users;
 	}
+	private Wallet findWallet(User user, Coin coin) {
+	    Wallet[] userWallets = user.getUserWallets();
+	    for (Wallet wallet : userWallets) {
+	        if (wallet.getCurrency() == coin) {
+	            return wallet;
+	        }
+	    }
+	    return null;
+	}
 
 	public void cryptoTransaction() {
-		TransactionCrypto cryptoTrans = new TransactionCrypto();
+		TransactionCrypto cryptoT = new TransactionCrypto();
 		User[] containerUsers = userTransactionChecker();
+		
+		System.out.println("For what coin do you want to make the transaction?");
+		System.out.println("BTC");
+		System.out.println("ETH");
+		System.out.println("XRP");
+		System.out.println("ADA");
+		System.out.println("SOL");
+		System.out.println("LTC");
+		System.out.println("XMR");
+		Coin coin = Coin.valueOf(input.nextLine());
+		System.out.println("Enter the amount for the transaction:");
+        double amount = input.nextDouble();
+        input.nextLine();
+		
 		if (containerUsers != null) {
 			User remitent = containerUsers[0];
 			User destinatary = containerUsers[1];
+			Wallet remitentWallet = findWallet(remitent, coin);
+
+	        if (remitentWallet != null) {
+	            Wallet destinataryWallet = findWallet(destinatary, coin);
+	            if (destinataryWallet != null && cryptoT.sendTo(remitentWallet, destinataryWallet, amount)) {
+	                System.out.println("Transaction completed successfully!");
+	            } else {
+	                System.out.println("Transaction failed.");
+	            }
+	        } else {
+	            System.out.println("Remitent wallet not found for the specified coin.");
+	        }
 		}
 
 	}
 
 	public void currencyTransaction() {
-		TransactionCurrency currencyTrans = new TransactionCurrency();
+		TransactionCurrency currencyT = new TransactionCurrency();
 		User[] containerUsers = userTransactionChecker();
-		if (containerUsers != null) {
+		System.out.println("For what coin do you want to make the transaction?");
+		System.out.println("USD");
+		System.out.println("EUR");
+		System.out.println("JPY");
+		System.out.println("GBP");
+		System.out.println("CHF");
+		System.out.println("RUB");
+		System.out.println("INR");
+		Coin coin = Coin.valueOf(input.nextLine());
+		System.out.println("Enter the amount for the transaction:");
+        double amount = input.nextDouble();
+		
+        if (containerUsers != null) {
 			User remitent = containerUsers[0];
 			User destinatary = containerUsers[1];
+			Wallet remitentWallet = findWallet(remitent, coin);
 
+	        if (remitentWallet != null) {
+	            Wallet destinataryWallet = findWallet(destinatary, coin);
+	            if (destinataryWallet != null && currencyT.sendTo(remitentWallet, destinataryWallet, amount)) {
+	                System.out.println("Transaction completed successfully!");
+	            } else {
+	                System.out.println("Transaction failed.");
+	            }
+	        } else {
+	            System.out.println("Remitent wallet not found for the specified coin.");
+	        }
 		}
 
 	}

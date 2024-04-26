@@ -10,6 +10,7 @@ public class Wallet {
 		this.propietary = propietary;
 		this.wealth = 0.0;
 		this.password = propietary.getPassword();
+		this.currency = coin;
 	}
 
 	public User getPropietary() {
@@ -46,10 +47,7 @@ public class Wallet {
 
 	@Override
 	public String toString() {
-		return "Wallet [propietary=" + propietary + ", wealth=" + wealth + ", password=" + password + ", currency="
-				+ currency + "]";
+		return propietary.getUsername() + "\n  " + wealth + currency;
 	}
-
-	
 
 }

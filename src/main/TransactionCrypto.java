@@ -3,27 +3,32 @@ package main;
 public class TransactionCrypto extends Transactions {
 
 	@Override
-	public void sendTo(User remitent, User destinatary, Wallet walletRemitent, Wallet walletDestinatary, double amount) {
-		if (walletRemitent.getCurrency() == Coin.BTC || walletRemitent.getCurrency() == Coin.ETH 
-	            || walletRemitent.getCurrency() == Coin.XRP || walletRemitent.getCurrency() == Coin.ADA 
-	            || walletRemitent.getCurrency() == Coin.SOL || walletRemitent.getCurrency() == Coin.LTC 
-	            || walletRemitent.getCurrency() == Coin.XMR) {
+	public boolean sendTo(Wallet walletRemitent, Wallet walletDestinatary, double amount) {
+	    boolean transactionSuccess = false;
 
+	    if (currencyValid(walletRemitent.getCurrency())) {
 	        if (walletDestinatary.getCurrency() == walletRemitent.getCurrency()) {
 	            if (walletRemitent.getWealth() >= amount) {
 	                walletRemitent.setWealth(walletRemitent.getWealth() - amount);
 	                walletDestinatary.setWealth(walletDestinatary.getWealth() + amount);
-	                System.out.println("Transaction successful!");
+	                transactionSuccess = true;
+	                System.out.println("transaction successful!");
 	            } else {
-	                System.out.println("Insufficient funds in remitent's wallet.");
+	                System.out.println("remitent doesnt have that much money");
 	            }
 	        } else {
-	            System.out.println("Remitent and destinatary wallets have different currencies.");
+	            System.out.println("remitent and destinatary wallets have different currencies");
 	        }
 	    } else {
-	        System.out.println("Invalid currency in remitent's wallet.");
+			System.out.println("remitent invalid currency");
 	    }
 
+	    return transactionSuccess;
+	}
+	private boolean currencyValid(Coin currency) {
+	    return currency == Coin.BTC || currency == Coin.ETH || currency == Coin.XRP 
+	           || currency == Coin.ADA || currency == Coin.SOL || currency == Coin.LTC 
+	           || currency == Coin.XMR;
 	}
 
 }
