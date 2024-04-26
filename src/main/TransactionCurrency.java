@@ -2,6 +2,11 @@ package main;
 
 public class TransactionCurrency extends Transactions {
 
+	
+	public TransactionCurrency(Wallet remitentWallet, Wallet destinataryWallet, double amount) {
+		super(remitentWallet, destinataryWallet, amount);
+	}
+
 	@Override
 	public boolean sendTo(Wallet walletRemitent, Wallet walletDestinatary, double amount) {
 		boolean transactionSuccess = false;
@@ -29,6 +34,11 @@ public class TransactionCurrency extends Transactions {
 	private boolean currencyValid(Coin currency) {
 		return currency == Coin.USD || currency == Coin.EUR || currency == Coin.GBP || currency == Coin.JPY
 				|| currency == Coin.CHF || currency == Coin.RUB || currency == Coin.INR;
+	}
+
+	@Override
+	public String toString() {
+		return super.toString() + " of currency";
 	}
 
 }

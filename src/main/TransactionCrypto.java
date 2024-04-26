@@ -1,7 +1,11 @@
 package main;
 
 public class TransactionCrypto extends Transactions {
-
+	
+	
+	public TransactionCrypto(Wallet remitentWallet, Wallet destinataryWallet, double amount) {
+		super(remitentWallet, destinataryWallet, amount);
+	}
 	@Override
 	public boolean sendTo(Wallet walletRemitent, Wallet walletDestinatary, double amount) {
 	    boolean transactionSuccess = false;
@@ -12,7 +16,6 @@ public class TransactionCrypto extends Transactions {
 	                walletRemitent.setWealth(walletRemitent.getWealth() - amount);
 	                walletDestinatary.setWealth(walletDestinatary.getWealth() + amount);
 	                transactionSuccess = true;
-	                System.out.println("transaction successful!");
 	            } else {
 	                System.out.println("remitent doesnt have that much money");
 	            }
@@ -29,6 +32,10 @@ public class TransactionCrypto extends Transactions {
 	    return currency == Coin.BTC || currency == Coin.ETH || currency == Coin.XRP 
 	           || currency == Coin.ADA || currency == Coin.SOL || currency == Coin.LTC 
 	           || currency == Coin.XMR;
+	}
+	@Override
+	public String toString() {
+		return super.toString() + " of crypto";
 	}
 
 }

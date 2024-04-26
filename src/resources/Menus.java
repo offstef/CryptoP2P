@@ -71,9 +71,8 @@ public class Menus {
 			System.out.println("What you want to do?");
 			System.out.println("	1. See all transactions");
 			System.out.println("	2. Start a transaction");
-			System.out.println("	3. Delete a transaction(requires auth)");
 			System.out.println();
-			System.out.println("	4.GO BACK");
+			System.out.println("	3. GO BACK");
 			option = input.nextInt();
 			switch (option) {
 			case 1:
@@ -83,14 +82,11 @@ public class Menus {
 				menuTransactions();
 				break;
 			case 3:
-				manager.deleteTransaction();
-				break;
-			case 4:
 				break;
 			default:
 				break;
 			}
-		} while (option != 4);
+		} while (option != 3);
 	}
 
 	public void walletMenu() {
@@ -98,23 +94,19 @@ public class Menus {
 		do {
 			System.out.println("What you want to do?");
 			System.out.println("	1. See an user wallets(requires auth)");
-			System.out.println("	2. Check wealth of an user(requires auth)");
 			System.out.println();
-			System.out.println("	3.GO BACK");
+			System.out.println("	2.GO BACK");
 			option = input.nextInt();
 			switch (option) {
 			case 1:
 				manager.walletUser();
 				break;
 			case 2:
-				manager.walletWealth();
-				break;
-			case 3:
 				break;
 			default:
 				break;
 			}
-		} while (option != 3);
+		} while (option != 2);
 	}
 
 	public void menuTransactions() {
