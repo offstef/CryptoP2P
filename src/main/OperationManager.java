@@ -11,20 +11,36 @@ public class OperationManager {
 	static Scanner input = new Scanner(System.in);
 
 	// user options
+
+	/**
+	 * Prompts to create a new user with a unique username and password, validates
+	 * the input, and adds the user with associated wallets
+	 * 
+	 * If input validation fails, the method retries until valid input is provided
+	 */
 	public void createUser() {
 		try {
 			User user = new User();
 			System.out.print("What's your name: ");
-			user.setUsername(input.nextLine());
-			if (user.getUsername().length() < 5) {
-				System.out.println("Username to short, min 5 characters");
+			String username = input.nextLine();
+
+			if (isUsernameTaken(username)) {
+				System.out.println("Username already exists");
 				createUser();
 			}
-			System.out.println("Set your password");
+			user.setUsername(username);
+
+			if (user.getUsername().length() < 5) {
+				System.err.println("Username to short, min 5 characters");
+				createUser();
+				return;
+			}
+			System.out.print("Set your password: ");
 			user.setPassword(input.nextLine());
 			if (user.getPassword().length() < 8) {
-				System.out.println("to short.. min 8 characters");
+				System.err.println("to short.. min 8 characters");
 				createUser();
+				return;
 			}
 			allUsers.add(user);
 			createWallets(user);
@@ -34,6 +50,27 @@ public class OperationManager {
 		}
 	}
 
+	/**
+	 * Checks if a username is already taken by looping through existing users
+	 * 
+	 * @param username the username to check for availability
+	 * @return true if the username is already taken
+	 */
+	private boolean isUsernameTaken(String username) {
+		for (User user : allUsers) {
+			if (user.getUsername().equalsIgnoreCase(username)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Creates walletsand initializes each wallet with a starting wealth of 10
+	 * coins.
+	 * 
+	 * @param user for assigning the wallets to him
+	 */
 	public void createWallets(User user) {
 		Coin[] allCoins = Coin.values();
 		Wallet[] userWallets = new Wallet[allCoins.length];
@@ -50,6 +87,10 @@ public class OperationManager {
 		 */
 	}
 
+	/**
+	 * Displays information about all users If no users exist, prompts the creation
+	 * of a new user
+	 */
 	public void seeUsers() {
 		if (allUsers.isEmpty()) {
 			System.out.println("No users created yet");
@@ -62,6 +103,10 @@ public class OperationManager {
 		}
 	}
 
+	/**
+	 * Deletes a user after confirming their credentials If no users exist, prompts
+	 * the creation of a new user
+	 */
 	public void deleteUser() {
 		Iterator<User> iteratorUser = allUsers.iterator();
 		boolean userDeleted = false;
@@ -97,6 +142,10 @@ public class OperationManager {
 	}
 
 	// transaction options
+	/**
+	 * Displays transactions categorizing them into currency and crypto transactions
+	 * If one is missing it will display the other one
+	 */
 	public void seeTransactions() {
 		if (cryptoTransactions.isEmpty() && currencyTransactions.isEmpty()) {
 			System.out.println("NOT A SINGLE TRANSACTION CREATED");
@@ -123,6 +172,12 @@ public class OperationManager {
 
 	}
 
+	/**
+	 * Checks users information of transactions, including both remitent and
+	 * destinatary users
+	 * 
+	 * @return an array containing the remitent at 0 and the destinatary at 1
+	 */
 	public User[] userTransactionChecker() {
 		User[] users = new User[2];
 		// remitent check
@@ -168,6 +223,13 @@ public class OperationManager {
 		return users;
 	}
 
+	/**
+	 * Finds and returns the wallet associated with a specific coin for a given user
+	 * 
+	 * @param user the user whose wallets are checked
+	 * @param coin the coin type to find in the user wallets
+	 * @return the wallet containing the specified coin, or null if not found
+	 */
 	private Wallet findWallet(User user, Coin coin) {
 		Wallet[] userWallets = user.getUserWallets();
 		for (Wallet wallet : userWallets) {
@@ -178,19 +240,29 @@ public class OperationManager {
 		return null;
 	}
 
+	/**
+	 * Displays a list of supported cryptocurrencies for transactions
+	 */
+	public void listOfCryptos() {
+		System.out.println("For what crypto do you want to make the transaction?");
+		System.out.println("BTC");
+		System.out.println("ETH");
+		System.out.println("XRP");
+		System.out.println("ADA");
+		System.out.println("SOL");
+		System.out.println("LTC");
+		System.out.println("XMR");
+	}
+
+	/**
+	 * Creates a crypto transaction between 2 users Prompts user to specify
+	 * transaction details Handles exceptions such as invalid coin selection and
+	 * transaction errors
+	 */
 	public void cryptoTransaction() {
-
-		User[] containerUsers = userTransactionChecker();
-
 		try {
-			System.out.println("For what coin do you want to make the transaction?");
-			System.out.println("BTC");
-			System.out.println("ETH");
-			System.out.println("XRP");
-			System.out.println("ADA");
-			System.out.println("SOL");
-			System.out.println("LTC");
-			System.out.println("XMR");
+			User[] containerUsers = userTransactionChecker();
+			listOfCryptos();
 			Coin coin = Coin.valueOf(input.nextLine());
 			System.out.println("Enter the amount for the transaction:");
 			double amount = input.nextDouble();
@@ -218,20 +290,31 @@ public class OperationManager {
 			System.err.println("error..." + e.getMessage());
 			cryptoTransaction();
 		}
-
 	}
 
+	/**
+	 * Displays a list of supported currencies for transactions
+	 */
+	public void listOfCurrency() {
+		System.out.println("For what currency do you want to make the transaction?");
+		System.out.println("USD");
+		System.out.println("EUR");
+		System.out.println("JPY");
+		System.out.println("GBP");
+		System.out.println("CHF");
+		System.out.println("RUB");
+		System.out.println("INR");
+	}
+
+	/**
+	 * Facilitates a currency transaction between 2 users Prompts for user input to
+	 * specify transaction details Handles exceptions such as invalid currency
+	 * selection and transaction errors
+	 */
 	public void currencyTransaction() {
 		try {
 			User[] containerUsers = userTransactionChecker();
-			System.out.println("For what coin do you want to make the transaction?");
-			System.out.println("USD");
-			System.out.println("EUR");
-			System.out.println("JPY");
-			System.out.println("GBP");
-			System.out.println("CHF");
-			System.out.println("RUB");
-			System.out.println("INR");
+
 			Coin coin = Coin.valueOf(input.nextLine());
 			System.out.println("Enter the amount for the transaction:");
 			double amount = input.nextDouble();
@@ -266,6 +349,10 @@ public class OperationManager {
 	}
 
 	// wallet options
+	/**
+	 * Displays the wallets associated with a user after authentication Prompts for
+	 * username and password Allows users to create a new account if no users exist
+	 */
 	public void walletUser() {
 		if (allUsers.isEmpty()) {
 			System.out.println("No users created yet");

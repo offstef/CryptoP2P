@@ -1,5 +1,8 @@
 package program;
 
+/**
+ * @author OffStef
+ */
 import resources.Banners;
 
 import resources.Menus;
@@ -10,8 +13,11 @@ public class CryptoP2P {
 		Banners banner = new Banners();
 		Menus menu = new Menus();
 
+		// title of CryptoP2P
 		banner.title();
+		// menu that cointais all the program
 		menu.initialMenu();
+		// end banner
 		banner.end();
 	}
 

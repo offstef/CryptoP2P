@@ -6,6 +6,14 @@ public class TransactionCurrency extends Transactions {
 		super(remitentWallet, destinataryWallet, amount);
 	}
 
+	/**
+	 * Transfers a specified amount from one wallet to another
+	 * 
+	 * @param walletRemitent    the wallet sending the amount
+	 * @param walletDestinatary the wallet receiving the amount
+	 * @param amount            the amount to transfer
+	 * @return true if the transaction is successful, false otherwise
+	 */
 	@Override
 	public boolean sendTo(Wallet walletRemitent, Wallet walletDestinatary, double amount) {
 		boolean transactionSuccess = false;
@@ -30,6 +38,12 @@ public class TransactionCurrency extends Transactions {
 		return transactionSuccess;
 	}
 
+	/**
+	 * Checks if a given currency is valid for transactions.
+	 * 
+	 * @param currency the currency to check
+	 * @return true if the currency is valid, false otherwise
+	 */
 	private boolean currencyValid(Coin currency) {
 		return currency == Coin.USD || currency == Coin.EUR || currency == Coin.GBP || currency == Coin.JPY
 				|| currency == Coin.CHF || currency == Coin.RUB || currency == Coin.INR;
