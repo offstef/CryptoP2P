@@ -314,28 +314,24 @@ public class OperationManager {
 	public void currencyTransaction() {
 		try {
 			User[] containerUsers = userTransactionChecker();
-
+			listOfCurrency();
 			Coin coin = Coin.valueOf(input.nextLine());
 			System.out.println("Enter the amount for the transaction:");
 			double amount = input.nextDouble();
 			input.nextLine();
-
 			if (containerUsers != null) {
 				User remitent = containerUsers[0];
 				User destinatary = containerUsers[1];
-				Wallet remitentWallet = findWallet(remitent, coin);
 
-				if (remitentWallet != null) {
-					Wallet destinataryWallet = findWallet(destinatary, coin);
-					TransactionCurrency currencyT = new TransactionCurrency(remitentWallet, destinataryWallet, amount);
-					if (destinataryWallet != null && currencyT.sendTo(remitentWallet, destinataryWallet, amount)) {
-						System.out.println("Transaction completed successfully!");
-						currencyTransactions.add(currencyT);
-					} else {
-						System.out.println("Transaction failed.");
-					}
+				Wallet remitentWallet = findWallet(remitent, coin);
+				Wallet destinataryWallet = findWallet(destinatary, coin);
+				TransactionCurrency currencyT = new TransactionCurrency(remitentWallet, destinataryWallet, amount);
+
+				if (destinataryWallet != null && currencyT.sendTo(remitentWallet, destinataryWallet, amount)) {
+					System.out.println("Transaction completed successfully!");
+					currencyTransactions.add(currencyT);
 				} else {
-					System.out.println("Remitent wallet not found for the specified coin.");
+					System.out.println("Transaction failed.");
 				}
 			}
 		} catch (IllegalArgumentException e) {

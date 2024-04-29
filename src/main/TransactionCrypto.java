@@ -4,7 +4,7 @@ public class TransactionCrypto extends Transactions {
 
 	public TransactionCrypto(Wallet remitentWallet, Wallet destinataryWallet, double amount) {
 		super(remitentWallet, destinataryWallet, amount);
-		this.amount = 5;
+		this.amount = amount;
 	}
 
 	/**

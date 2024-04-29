@@ -4,6 +4,7 @@ public class TransactionCurrency extends Transactions {
 
 	public TransactionCurrency(Wallet remitentWallet, Wallet destinataryWallet, double amount) {
 		super(remitentWallet, destinataryWallet, amount);
+		this.amount = amount;
 	}
 
 	/**
@@ -24,7 +25,6 @@ public class TransactionCurrency extends Transactions {
 					walletRemitent.setWealth(walletRemitent.getWealth() - amount);
 					walletDestinatary.setWealth(walletDestinatary.getWealth() + amount);
 					transactionSuccess = true;
-					System.out.println("transaction successful!");
 				} else {
 					System.out.println("remitent doesnt have that much money");
 				}
